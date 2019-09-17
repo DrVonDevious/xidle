@@ -38,8 +38,15 @@ def main():
 def counter():
     try:
         while True:
-            stats.gold += stats.workers
+
+            stats.score += stats.miners + stats.farmers + stats.woodcutters
+
+            stats.gold += stats.miners
+            stats.wheat += stats.farmers
+            stats.lumber += stats.woodcutters
+
             time.sleep(1)
+
     except commands.QUIT: quit()
 
 def run():

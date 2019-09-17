@@ -17,13 +17,38 @@ def get_command(window):
 def do_command(cmd, window):
 
     if cmd == "quit": quit_game(window); print("quiting...")
-    elif cmd == "buy": buy(window)
+    elif cmd == "buy miner": buy_miner(window)
+    elif cmd == "buy farmer": buy_farmer(window)
+    elif cmd == "buy woodcutter": buy_woodcutter(window)
     else: command_error(window)
 
-def buy(window):
-    stats.gold -= 15
-    stats.workers += 1
-    util.clearln(window, 2)
+def buy_miner(window):
+    if stats.gold >= 15:
+        stats.gold -= 15
+        stats.miners += 1
+        util.clearln(window, 2)
+    else: 
+        util.clearln(window, 1)
+        window.addstr(1, 0, "Not enough gold!")
+
+def buy_farmer(window):
+    if stats.gold >= 40:
+        stats.gold -= 40
+        stats.farmers += 1
+        util.clearln(window, 2)
+    else: 
+        util.clearln(window, 1)
+        window.addstr(1, 0, "Not enough gold!")
+
+def buy_woodcutter(window):
+    if stats.gold >= 100 & stats.wheat >= 20:
+        stats.gold -= 100
+        stats.wheat -= 20
+        stats.woodcutters += 1
+        util.clearln(window, 2)
+    else: 
+        util.clearln(window, 1)
+        window.addstr(1, 0, "Not enough gold or lumber!")
 
 def sell(n):
     pass
