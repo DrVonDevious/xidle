@@ -1,0 +1,1 @@
+{"score": [{"score": 0}], "resources": [{"gold": 0, "wheat": 0, "lumber": 0}], "workers": [{"miners": 1, "farmers": 0, "woodcutters": 0}]}

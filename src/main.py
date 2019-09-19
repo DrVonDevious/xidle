@@ -1,12 +1,18 @@
 import curses
 from src import windows, stats, commands
-import shutil, time, threading
+import shutil, time, threading, sys
+from src.data import data_handling
 
 cols, rows = shutil.get_terminal_size(fallback=(80, 24))
+running = False
 
 def main():
 
+    global running
+
     stdscr = curses.initscr()
+
+    data_handling.load()
 
     win = curses.newwin(rows -3, cols, 3, 0)
     statwin = curses.newwin(3, cols, 0, 0)
@@ -15,6 +21,7 @@ def main():
 
     win.refresh()
     statwin.refresh()
+    running = True
     counter_thread = threading.Thread(target = counter)
     counter_thread.start()
 
@@ -30,14 +37,15 @@ def main():
 
     except commands.QUIT: print("Quiting...")
 
-    curses.nocbreak()
-    win.keypad(0)
-    curses.echo()
-    curses.endwin()  
+    running = False
+    data_handling.save()
+
+    windows.close_windows()
+    sys.exit()
 
 def counter():
     try:
-        while True:
+        while running == True:
 
             stats.score += stats.miners + stats.farmers + stats.woodcutters
 
@@ -47,10 +55,7 @@ def counter():
 
             time.sleep(1)
 
-    except commands.QUIT: quit()
+    except commands.QUIT: print("Closed counter!")
 
 def run():
     main()
-
-if __name__ == '__main__':
-    curses.wrapper(main)

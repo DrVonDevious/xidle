@@ -30,3 +30,9 @@ def init_windows(game_window, stat_window):
     draw_menu_window(stat_window)
 
     print("Windows initialized!")
+
+def close_windows():
+
+    curses.nocbreak()
+    curses.echo()
+    curses.endwin()
