@@ -7,7 +7,7 @@ def get_command(window):
 
     util.clearln(window, 0)
     util.clearln(window, 1)
-    window.addstr(0, 0, ">: ")
+    util.addclstr(window, 0, 0, ">: ", curses.COLOR_GREEN, curses.COLOR_BLACK)
     cmd = window.getstr(0, 3).decode('utf-8')
     util.clearln(window, 0)
     windows.draw_menu_window(window)

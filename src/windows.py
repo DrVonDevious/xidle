@@ -25,6 +25,7 @@ def init_windows(game_window, stat_window):
     curses.noecho()
     curses.cbreak()
     curses.curs_set(0)
+    curses.start_color()
 
     draw_game_window(game_window)
     draw_menu_window(stat_window)

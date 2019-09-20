@@ -12,7 +12,11 @@ def main():
 
     stdscr = curses.initscr()
 
-    data_handling.load()
+    try:
+        data_handling.load()
+    except:
+        data_handling.save()
+        data_handling.load()
 
     win = curses.newwin(rows -3, cols, 3, 0)
     statwin = curses.newwin(3, cols, 0, 0)
