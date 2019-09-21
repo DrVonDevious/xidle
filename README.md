@@ -4,7 +4,7 @@ of the built-in python libraries such as curses, threading and time. Feel free t
 that is in the project.
 
 This program uses the curses library, which may not be installed by default.
-If you have pip installed run 'pip install windows-curses' from the command line.
+If you have pip installed, run 'pip install windows-curses' from the command line.
 
 INSTRUCTIONS:
 
@@ -13,6 +13,6 @@ INSTRUCTIONS:
 
 COSTS:
 
-    Miners - 15 gold
-    Farmers - 40 gold
-    Woodcutters - 100 gold and 20 wheat
+    Miner - 15 gold
+    Farmer - 40 gold
+    Woodcutter - 100 gold and 20 wheat
