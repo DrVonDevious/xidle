@@ -1,5 +1,5 @@
 import curses
-from src import windows, stats, commands
+from src import windows, stats, commands, util
 import shutil, time, threading, sys
 from src.data import data_handling
 

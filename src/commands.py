@@ -7,7 +7,7 @@ def get_command(window):
 
     util.clearln(window, 0)
     util.clearln(window, 1)
-    util.addclstr(window, 0, 0, ">: ", curses.COLOR_GREEN, curses.COLOR_BLACK)
+    window.addstr(0, 0, ">: ", curses.color_pair(windows.GREEN_PAIR))
     cmd = window.getstr(0, 3).decode('utf-8')
     util.clearln(window, 0)
     windows.draw_menu_window(window)
@@ -30,7 +30,7 @@ def buy_miner(window):
         util.clearln(window, 2)
     else: 
         util.clearln(window, 1)
-        window.addstr(1, 0, "Not enough gold!")
+        window.addstr(1, 0, "Not enough gold!", curses.color_pair(windows.ERROR_PAIR))
 
 def buy_farmer(window):
     if stats.gold >= 40:
@@ -39,7 +39,7 @@ def buy_farmer(window):
         util.clearln(window, 2)
     else: 
         util.clearln(window, 1)
-        window.addstr(1, 0, "Not enough gold!")
+        window.addstr(1, 0, "Not enough gold!", curses.color_pair(windows.ERROR_PAIR))
 
 def buy_woodcutter(window):
     if stats.gold >= 100 & stats.wheat >= 20:
@@ -49,11 +49,11 @@ def buy_woodcutter(window):
         util.clearln(window, 2)
     else: 
         util.clearln(window, 1)
-        window.addstr(1, 0, "Not enough gold or lumber!")
+        window.addstr(1, 0, "Not enough gold or lumber!", curses.color_pair(windows.ERROR_PAIR))
 
 def reset(window):
     util.clearln(window, 0)
-    window.addstr(0, 0, "Are you sure you wish to reset?: ")
+    window.addstr(0, 0, "Are you sure you want to reset?: ", curses.color_pair(windows.WARNING_PAIR))
     cmd = window.getstr(0, 33).decode('utf-8')
     util.clearln(window, 0)
 
@@ -68,11 +68,11 @@ def reset(window):
         util.clearln(window, 2)
         windows.draw_menu_window(window)
     elif cmd == "no": pass
-    else: window.addstr(1, 0, "That is not a valid command!")
+    else: window.addstr(1, 0, "That is not a valid command!", curses.color_pair(windows.ERROR_PAIR))
 
 def quit_game(window):
     window.addstr(1, 0, "Quiting...")
     raise QUIT
 
 def command_error(window):
-    window.addstr(1, 0, "That is not a valid command!")
+    window.addstr(1, 0, "That is not a valid command!", curses.color_pair(windows.ERROR_PAIR))
