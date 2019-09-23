@@ -1,4 +1,4 @@
-import curses
+import curses, locale
 from src import stats, util
 
 DEFAULT_PAIR = 1
@@ -22,19 +22,21 @@ def draw_game_window(window):
 
 def draw_menu_window(window):
 
+    locale.setlocale(locale.LC_ALL, '') # Sets localization for number formating
+
     window.nodelay(1)
 
     window.addstr(0, 0, "Press TAB to enter a command.")
 
-    window.addstr(2, 0, ("Gold: " + str(stats.gold)), curses.color_pair(GOLD_PAIR))
-    window.addstr(2, 15, ("Wheat: " + str(stats.wheat)), curses.color_pair(FARM_PAIR))
-    window.addstr(2, 31, ("Lumber: " + str(stats.lumber)), curses.color_pair(WOOD_PAIR))
+    window.addstr(2, 0, ("Gold: " + util.format_num(stats.gold)), curses.color_pair(GOLD_PAIR))
+    window.addstr(2, 19, ("Wheat: " + util.format_num(stats.wheat)), curses.color_pair(FARM_PAIR))
+    window.addstr(2, 39, ("Lumber: " + util.format_num(stats.lumber)), curses.color_pair(WOOD_PAIR))
 
-    window.addstr(2, 48, ("Miners: " + str(stats.miners)), curses.color_pair(GOLD_PAIR))
-    window.addstr(2, 65, ("Farmers: " + str(stats.farmers)), curses.color_pair(FARM_PAIR))
-    window.addstr(2, 83, ("Woodcutters: " + str(stats.woodcutters)), curses.color_pair(WOOD_PAIR))
+    window.addstr(3, 0, ("Miners: " + util.format_num(stats.miners)), curses.color_pair(GOLD_PAIR))
+    window.addstr(3, 19, ("Farmers: " + util.format_num(stats.farmers)), curses.color_pair(FARM_PAIR))
+    window.addstr(3, 39, ("Woodcutters: " + util.format_num(stats.woodcutters)), curses.color_pair(WOOD_PAIR))
 
-    window.addstr(2, 105, ("Score: " + str(stats.score)))
+    window.addstr(0, 31, ("Score: " + util.format_num(stats.score)), curses.color_pair(DEFAULT_PAIR))
 
 def init_windows(game_window, stat_window):
 

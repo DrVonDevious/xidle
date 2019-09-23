@@ -18,8 +18,8 @@ def main():
         data_handling.save()
         data_handling.load()
 
-    win = curses.newwin(rows -3, cols, 3, 0)
-    statwin = curses.newwin(3, cols, 0, 0)
+    win = curses.newwin(rows -4, cols, 4, 0)
+    statwin = curses.newwin(4, cols, 0, 0)
 
     windows.init_windows(win, statwin)
 
@@ -51,13 +51,13 @@ def counter():
     try:
         while running == True:
 
-            stats.score += stats.miners + stats.farmers + stats.woodcutters
+            stats.score += (stats.miners + stats.farmers + stats.woodcutters) / 100
 
-            stats.gold += stats.miners
-            stats.wheat += stats.farmers
-            stats.lumber += stats.woodcutters
+            stats.gold += stats.miners / 100
+            stats.wheat += stats.farmers / 100
+            stats.lumber += stats.woodcutters / 100
 
-            time.sleep(1)
+            time.sleep(0.01)
 
     except commands.QUIT: print("Closed counter!")
 

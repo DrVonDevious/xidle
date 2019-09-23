@@ -5,8 +5,8 @@ class QUIT(Exception): pass
 
 def get_command(window):
 
-    util.clearln(window, 0)
     util.clearln(window, 1)
+    window.addstr(0, 0, "                             ")
     window.addstr(0, 0, ">: ", curses.color_pair(windows.GREEN_PAIR))
     cmd = window.getstr(0, 3).decode('utf-8')
     util.clearln(window, 0)
