@@ -7,6 +7,7 @@ def clearln(window, row): # Clears a single line
     window.clrtoeol()
     window.move(x, y)
 
+# Formats the outputed resource, worker and score numbers
 def format_num(num):
 
     num_digits = len(str(int(num)))

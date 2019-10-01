@@ -12,12 +12,13 @@ def main():
 
     stdscr = curses.initscr()
 
-    try:
+    try: # Initial load
         data_handling.load()
     except:
         data_handling.save()
         data_handling.load()
 
+    # Sets sub-window sizes
     win = curses.newwin(rows -4, cols, 4, 0)
     statwin = curses.newwin(4, cols, 0, 0)
 
@@ -26,9 +27,12 @@ def main():
     win.refresh()
     statwin.refresh()
     running = True
+
+    # Starts a seperate thread for the counter
     counter_thread = threading.Thread(target = counter)
     counter_thread.start()
 
+    # Main loop
     try:
         while True:
 
@@ -47,6 +51,7 @@ def main():
     windows.close_windows()
     sys.exit()
 
+# Counter updates every 1/100th of a second
 def counter():
     try:
         while running == True:

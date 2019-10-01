@@ -3,8 +3,8 @@ from src import windows, stats, util
 
 class QUIT(Exception): pass
 
+# Prompts user to enter command
 def get_command(window):
-
     util.clearln(window, 1)
     window.addstr(0, 0, "                             ")
     window.addstr(0, 0, ">: ", curses.color_pair(windows.GREEN_PAIR))
@@ -14,10 +14,11 @@ def get_command(window):
     do_command(cmd, window)
     return cmd
 
+# Executes command given by get_command
 def do_command(cmd, window):
 
     if cmd == "quit": quit_game(window); print("quiting...")
-    elif cmd == "buy miner": buy_miner(window)
+    elif cmd == "buy miner" : buy_miner(window)
     elif cmd == "buy farmer": buy_farmer(window)
     elif cmd == "buy woodcutter": buy_woodcutter(window)
     elif cmd == "reset": reset(window)
@@ -51,6 +52,7 @@ def buy_woodcutter(window):
         util.clearln(window, 1)
         window.addstr(1, 0, "Not enough gold or lumber!", curses.color_pair(windows.ERROR_PAIR))
 
+# Resets all stats to default
 def reset(window):
     util.clearln(window, 0)
     window.addstr(0, 0, "Are you sure you want to reset?: ", curses.color_pair(windows.WARNING_PAIR))

@@ -1,6 +1,7 @@
 import curses, locale
 from src import stats, util
 
+# Defines color and pair call numbers
 DEFAULT_PAIR = 1
 GREEN_PAIR = 2
 WARNING_PAIR = 3
@@ -58,7 +59,7 @@ def close_windows():
     curses.echo()
     curses.endwin()
 
-def init_colors():
+def init_colors(): # Defines colors and color pairs
 
     curses.init_color(COLOR_BLACK, 0, 0, 0)
     curses.init_color(COLOR_WHITE, 1000, 1000, 1000)
