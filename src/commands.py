@@ -18,39 +18,31 @@ def get_command(window):
 def do_command(cmd, window):
 
     if cmd == "quit": quit_game(window); print("quiting...")
-    elif cmd == "buy miner" : buy_miner(window)
-    elif cmd == "buy farmer": buy_farmer(window)
-    elif cmd == "buy woodcutter": buy_woodcutter(window)
+    elif cmd == "buy miner" : buy_worker(window, 'miner')
+    elif cmd == "buy farmer": buy_worker(window, 'farmer')
+    elif cmd == "buy woodcutter": buy_worker(window, 'woodcutter')
     elif cmd == "reset": reset(window)
     else: command_error(window)
 
-def buy_miner(window):
-    if stats.gold >= 15:
-        stats.gold -= 15
-        stats.miners += 1
-        util.clearln(window, 2)
-    else: 
-        util.clearln(window, 1)
-        window.addstr(1, 0, "Not enough gold!", curses.color_pair(windows.ERROR_PAIR))
+def buy_worker(window, worker):
+    costs = [
+        stats.gold >= stats.worker_cost[worker]['gold'],
+        stats.wheat >= stats.worker_cost[worker]['wheat'],
+        stats.lumber >= stats.worker_cost[worker]['lumber']]
 
-def buy_farmer(window):
-    if stats.gold >= 40:
-        stats.gold -= 40
-        stats.farmers += 1
-        util.clearln(window, 2)
-    else: 
-        util.clearln(window, 1)
-        window.addstr(1, 0, "Not enough gold!", curses.color_pair(windows.ERROR_PAIR))
+    if all(costs):
+        stats.gold -= stats.worker_cost[worker]['gold']
+        stats.wheat -= stats.worker_cost[worker]['wheat']
+        stats.lumber -= stats.worker_cost[worker]['lumber']
 
-def buy_woodcutter(window):
-    if(stats.gold >= 100) and (stats.wheat >= 20):
-        stats.gold -= 100
-        stats.wheat -= 20
-        stats.woodcutters += 1
+        if worker == 'miner': stats.miners += 1
+        elif worker == 'farmer': stats.farmers += 1
+        elif worker == 'woodcutter': stats.woodcutters += 1
+
         util.clearln(window, 2)
     else: 
         util.clearln(window, 1)
-        window.addstr(1, 0, "Not enough gold or lumber!", curses.color_pair(windows.ERROR_PAIR))
+        window.addstr(1, 0, "Not enough resources!", curses.color_pair(windows.ERROR_PAIR))
 
 # Resets all stats to default
 def reset(window):
@@ -68,6 +60,7 @@ def reset(window):
         stats.farmers = 0
         stats.woodcutters = 0
         util.clearln(window, 2)
+        util.clearln(window, 3)
         windows.draw_menu_window(window)
     elif cmd == "no": pass
     else: window.addstr(1, 0, "That is not a valid command!", curses.color_pair(windows.ERROR_PAIR))
