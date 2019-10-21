@@ -27,12 +27,15 @@ def draw_menu_window(window):
     window.addstr(0, 0, "Press TAB to enter a command.")
 
     window.addstr(2, 0, ("Gold: " + util.format_num(stats.gold)), curses.color_pair(GOLD_PAIR))
-    window.addstr(2, 19, ("Wheat: " + util.format_num(stats.wheat)), curses.color_pair(FARM_PAIR))
-    window.addstr(2, 39, ("Lumber: " + util.format_num(stats.lumber)), curses.color_pair(WOOD_PAIR))
-
     window.addstr(3, 0, ("Miners: " + util.format_num(stats.miners)), curses.color_pair(GOLD_PAIR))
-    window.addstr(3, 19, ("Farmers: " + util.format_num(stats.farmers)), curses.color_pair(FARM_PAIR))
-    window.addstr(3, 39, ("Woodcutters: " + util.format_num(stats.woodcutters)), curses.color_pair(WOOD_PAIR))
+
+    if(stats.unlocks >= 2):
+        window.addstr(2, 19, ("Wheat: " + util.format_num(stats.wheat)), curses.color_pair(FARM_PAIR))
+        window.addstr(3, 19, ("Farmers: " + util.format_num(stats.farmers)), curses.color_pair(FARM_PAIR))
+
+    if(stats.unlocks >= 3):
+        window.addstr(2, 39, ("Lumber: " + util.format_num(stats.lumber)), curses.color_pair(WOOD_PAIR))
+        window.addstr(3, 39, ("Woodcutters: " + util.format_num(stats.woodcutters)), curses.color_pair(WOOD_PAIR))
 
     window.addstr(0, 31, ("Score: " + util.format_num(stats.score)), curses.color_pair(DEFAULT_PAIR))
 

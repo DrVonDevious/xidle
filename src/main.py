@@ -39,6 +39,7 @@ def main():
             windows.draw_menu_window(statwin)
             if statwin.getch() == 9: curses.echo(); curses.curs_set(1); commands.get_command(statwin)
             curses.noecho(); curses.curs_set(0)
+            updateUnlocks()
 
             statwin.refresh()
 
@@ -64,6 +65,10 @@ def counter():
             time.sleep(0.01)
 
     except commands.QUIT: print("Closed counter!")
+
+def updateUnlocks():
+    if(stats.farmers == 1) and (stats.unlocks == 1): stats.unlocks += 1
+    if(stats.woodcutters == 1) and (stats.unlocks == 2): stats.unlocks += 1
 
 def run():
     main()

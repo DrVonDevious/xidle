@@ -43,7 +43,7 @@ def buy_farmer(window):
         window.addstr(1, 0, "Not enough gold!", curses.color_pair(windows.ERROR_PAIR))
 
 def buy_woodcutter(window):
-    if stats.gold >= 100 & stats.wheat >= 20:
+    if(stats.gold >= 100) and (stats.wheat >= 20):
         stats.gold -= 100
         stats.wheat -= 20
         stats.woodcutters += 1
