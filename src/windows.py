@@ -18,9 +18,6 @@ COLOR_BLUE = 105
 COLOR_YELLOW = 106
 COLOR_ORANGE = 107
 
-def draw_game_window(window):
-    window.border()
-
 def draw_menu_window(window):
 
     locale.setlocale(locale.LC_ALL, '') # Sets localization for number formating
@@ -39,7 +36,7 @@ def draw_menu_window(window):
 
     window.addstr(0, 31, ("Score: " + util.format_num(stats.score)), curses.color_pair(DEFAULT_PAIR))
 
-def init_windows(game_window, stat_window):
+def init_windows(stat_window):
 
     curses.noecho()
     curses.cbreak()
@@ -48,7 +45,6 @@ def init_windows(game_window, stat_window):
 
     init_colors()
 
-    draw_game_window(game_window)
     draw_menu_window(stat_window)
 
     print("Windows initialized!")

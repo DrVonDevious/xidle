@@ -8,6 +8,8 @@ running = False
 
 def main():
 
+    data_handling.login()
+
     global running
 
     stdscr = curses.initscr()
@@ -19,12 +21,10 @@ def main():
         data_handling.load()
 
     # Sets sub-window sizes
-    win = curses.newwin(rows -4, cols, 4, 0)
     statwin = curses.newwin(4, cols, 0, 0)
 
-    windows.init_windows(win, statwin)
+    windows.init_windows(statwin)
 
-    win.refresh()
     statwin.refresh()
     running = True
 
@@ -40,7 +40,6 @@ def main():
             if statwin.getch() == 9: curses.echo(); curses.curs_set(1); commands.get_command(statwin)
             curses.noecho(); curses.curs_set(0)
 
-            win.refresh()
             statwin.refresh()
 
     except commands.QUIT: print("Quiting...")
