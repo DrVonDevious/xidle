@@ -1,5 +1,5 @@
 
-XIdle is a terminal based idle game written by me (William Rutland) as a means to familiarize myself with many
+XIdle is a terminal based idle game written as a means to familiarize myself with many
 of the built-in python libraries such as curses, threading and time. Feel free to copy/paste any of the code
 that is in the project.
 
