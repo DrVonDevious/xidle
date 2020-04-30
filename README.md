@@ -2,7 +2,7 @@
 == WINDOWS ONLY FOR NOW ==
 
 XIdle is a terminal based idle game written as a means to familiarize myself with many
-of the built-in python libraries such as curses, threading and time. Feel free to copy/paste any of the code
+of the built-in python libraries such as curses, and threading. Feel free to copy/paste any of the code
 that is in the project.
 
 This program uses the curses library, which may not be installed by default.
